@@ -121,8 +121,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping"><i class="material-icons">lock</i></span>
                 </div>
-                <input type="password" placeholder="Password" name="password" class="form-control">
+                <input type="password" placeholder="Password" name="password" id="myInput" class="form-control">
                 </div>
+                <i class="material-icons">lock_open</i> <input type="checkbox" onclick="showpass()"> Show Password
                 <span class="help-block"> <?php echo $password_err; ?></span>
             </div>
             <div class="form-group">
@@ -138,6 +139,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             function  loadicon() {
                 document.getElementById("qwe").style.display = 'block';
                 document.getElementById("asd").style.display = 'none';
+            }
+            function showpass() {
+                var x = document.getElementById("myInput");
+                if (x.type === "password") {
+                    x.type = "text";
+                } else {
+                    x.type = "password";
+                }
             }
         </script>
        

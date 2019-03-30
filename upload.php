@@ -1,7 +1,8 @@
 <?php
 $subject = $_POST["subject"];
+$category = $_POST["category"];
 $topic = $_POST["topic"];
-$target_dir = "uploads/".$subject."/";
+$target_dir = "uploads/".$subject."/".$category."/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
@@ -39,7 +40,7 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "sgvu0";
-
+/*
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
@@ -56,11 +57,11 @@ if ($conn->query($sql) === TRUE) {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
 
-$conn->close();
+$conn->close(); */
 
 ?>
 
-
+<!--
 <!DOCTYPE>
 <html>
     <head>
@@ -69,4 +70,4 @@ $conn->close();
     <body>
         <h3 align="center"> You will be redirected to homepage in 5 seconds</h3>
     </body>
-</html>
+</html> -->
