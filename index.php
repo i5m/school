@@ -16,10 +16,10 @@
     <body>
         <br><br>
         <div id="indexbtn" align="center">
-            <button type="button" style="width: 170px; height: 50px; border-radius: 15px; margin: 7px;" onclick="window.location.href='assignments.php'" class="btn btn-dark">
+            <button type="button" style="width: 170px; height: 50px; border-radius: 15px; margin: 7px;" onclick="window.location.href='assignments.php'" class="btn btn-secondary">
                 <i class="material-icons">assignment</i> <b> Assignments </b>
             </button>
-            <button type="button" style="width: 170px; height: 50px; border-radius: 15px; margin: 7px;" onclick="window.location.href='login.php'" class="btn btn-dark">
+            <button type="button" style="width: 170px; height: 50px; border-radius: 15px; margin: 7px;" onclick="window.location.href='login.php'" class="btn btn-secondary">
                 <i class="material-icons">lock</i> <b> Log in </b>
             </button><br>
             <br>
@@ -30,7 +30,7 @@
             <button type="button" data-toggle="modal" data-target=".bd-example-modal-xl5" class="btn btn-outline-primary"> <i class="material-icons">book</i> <b> Workshop Practice </b> </button>
             <button type="button" data-toggle="modal" data-target=".bd-example-modal-xl6" class="btn btn-outline-success"> <i class="material-icons">book</i> <b> Engineering Mecahnics </b> </button>
             <button type="button" data-toggle="modal" data-target=".bd-example-modal-xl7" class="btn btn-outline-warning"> <i class="material-icons">book</i> <b> Maths II </b> </button>
-            <button type="button" data-toggle="modal" data-target=".bd-example-modal-xl8" class="btn btn-outline-danger"> <i class="material-icons">book</i> <b> Prof Comm </b> </button>
+            <button type="button" data-toggle="modal" data-target=".bd-example-modal-xl8" class="btn btn-outline-danger"> <i class="material-icons">book</i> <b> Prof Comm </b> </button><br><br>
         </div>
 
         <?php require_once('modalindex.php'); ?>

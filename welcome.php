@@ -16,7 +16,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         top: 55%;
         left: 50%;
         transform: translate(-50%,-50%);
-        z-index: -1;
     }
 </style>
 </head>
@@ -29,11 +28,11 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             <h2>Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Welcome to our site.<br><br>
             This is<br> &copy; <b>Ishan Mathur</b> Production </h2><br>
         </div>
-        <p>
+        
             <a href="reset-password.php" style="margin: 10px;" class="btn btn-outline-warning"><i class="material-icons">hourglass_empty</i><b> Reset Your Password </b></a>
             <a href="logout.php" style="margin: 10px;" class="btn btn-outline-danger"><i class="material-icons">input</i><b> Sign Out of Your Account </b></a><br>
             <a href="help.php" style="margin: 20px; width: 250px; border-radius: 15px; font-size: 27px;" class="btn btn-success"><i class="material-icons">group_work</i><b> Contribute </b></a>
-        </p>
+        
 
     </div>
 
