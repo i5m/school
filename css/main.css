@@ -1,0 +1,16 @@
+nav {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 5px;
+}
+nav .btn {
+    margin: 5px;
+    color: gray;
+}
+nav #btnspan .btn i { font-size: 30px; }
+@media only screen and (max-width: 850px) {
+    nav { height: 120px; }
+    nav #btnspan {
+        top: 55px;
+        position: relative;
+    }
+}
