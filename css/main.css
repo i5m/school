@@ -6,11 +6,13 @@ nav .btn {
     margin: 5px;
     color: gray;
 }
-nav #btnspan .btn i { font-size: 30px; }
-@media only screen and (max-width: 850px) {
-    nav { height: 120px; }
-    nav #btnspan {
-        top: 55px;
-        position: relative;
-    }
+@media only screen and (max-width: 385px) {
+    nav .btn { margin: 0; }
+}
+@media only screen and (max-width: 335px) {
+    nav #btnspan .btn img { width: 30px; height: auto; }
+}
+
+@media only screen and (max-width: 306px) {
+    nav #btnspan .btn img { width: 25px; height: auto; }
 }

@@ -8,8 +8,14 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     exit;
 }
  
-// Include config file
-require_once "config.php";
+define('DB_SERVER', 'localhost');
+define('DB_USERNAME', 'root');
+define('DB_PASSWORD', '');
+define('DB_NAME', 'schooldb');
+ 
+$link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+ 
+if($link === false){ die("ERROR: Could not connect. " . mysqli_connect_error()); }
  
 // Define variables and initialize with empty values
 $new_password = $confirm_password = "";
@@ -71,47 +77,34 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 ?>
  
 <?php require_once('header.php'); ?>
-<style>
-    .loginform {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%,-50%);
-    }
-</style>
-</head>
-<body>
 
-    <?php require_once('navbar.php'); ?>
-
-    <div class="loginform" align="center">
-
-        <h3> <i class="material-icons">hourglass_empty</i> <b> Reset Password </b> </h3><br>
-
+    <br><h2 style="margin: 8px; padding: 8px; font-family: 'Work Sans', sans-serif;"> <img src="img/navbar/user.png" width="50" height="auto"> Reset Password</h2><br>
+    <div class="alert-warning" align="center" style="max-width: 400px; margin: 20px; padding: 20px; border-radius: 20px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);">
+        <p><b>Reset your password here</b></p>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
             <div class="form-group <?php echo (!empty($new_password_err)) ? 'has-error' : ''; ?>">
-                <div class="input-group flex-nowrap">
+                <div class="input-group">
                     <div class="input-group-prepend">
-                        <span class="input-group-text" id="addon-wrapping"><i class="material-icons">lock_open</i></span>
+                        <span class="input-group-text" id="basic-addon1"><i class="material-icons">lock_open</i></span>
                     </div>
-                    <input type="password" name="new_password" class="form-control" placeholder="New Password" value="<?php echo $new_password; ?>">
+                    <input type="password" name="new_password" class="form-control" value="<?php echo $new_password; ?>" placeholder="New Password" aria-label="New Password" aria-describedby="basic-addon1">
+                    <span class="help-block"><?php echo $new_password_err; ?></span>
                 </div>
-                <span class="help-block"><?php echo $new_password_err; ?></span>
             </div>
             <div class="form-group <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
-                <div class="input-group flex-nowrap">
+                <div class="input-group">
                     <div class="input-group-prepend">
-                        <span class="input-group-text" id="addon-wrapping"><i class="material-icons">lock</i></span>
+                        <span class="input-group-text" id="basic-addon1"><i class="material-icons">lock</i></span>
                     </div>
-                    <input type="password" name="confirm_password" placeholder="Confirm Password" class="form-control">
+                    <input type="password" name="confirm_password" class="form-control"  placeholder="Confirm Password" aria-label="Confirm Password" aria-describedby="basic-addon1">
+                    <span class="help-block"><?php echo $confirm_password_err; ?></span>
                 </div>
-                <span class="help-block"><?php echo $confirm_password_err; ?></span>
             </div>
             <div class="form-group">
-                <input type="submit" class="btn btn-primary" value="Submit">
-                <a class="btn btn-link" href="welcome.php">Cancel</a>
+                <input type="submit" style="border-radius: 50px; font-weight: bold;" class="btn btn-warning" value="Submit">
+                <a class="btn btn-link" href="welcome.php"><b>Cancel</b></a>
             </div>
         </form>
-    </div>  
+    </div>
 
-<?php require_once('footer.php'); ?>
+    <?php require_once('footer.php'); ?>

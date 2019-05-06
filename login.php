@@ -7,9 +7,15 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
     header("location: welcome.php");
     exit;
 }
+
+define('DB_SERVER', 'localhost');
+define('DB_USERNAME', 'root');
+define('DB_PASSWORD', '');
+define('DB_NAME', 'schooldb');
  
-// Include config file
-require_once "config.php";
+$link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+ 
+if($link === false){ die("ERROR: Could not connect. " . mysqli_connect_error()); }
  
 // Define variables and initialize with empty values
 $username = $password = "";
@@ -89,67 +95,33 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 ?>
  
 <?php require_once('header.php'); ?>
-<style>
-    .loginform {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%,-50%);
-    }
-</style>
-</head>
-<body>
-
-    <?php require_once('navbar.php'); ?>
-    
-    <div class="loginform" align="center">
-
-        <h3> <i class="material-icons">fingerprint</i> <b> Log in </b> </h3><br>  
-
+    <br><h2 style="margin: 8px; padding: 8px; font-family: 'Work Sans', sans-serif;"> <img src="img/navbar/user.png" width="50" height="auto"> Log In</h2><br>
+    <div class="alert-primary" align="center" style="max-width: 400px; margin: 20px; padding: 20px; border-radius: 20px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);">
+        <p><b>Login to your account</b></p>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
-                <div class="input-group flex-nowrap">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="addon-wrapping">@</span>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="material-icons">person_outline</i></span>
+                    </div>
+                    <input type="text" name="username" class="form-control" value="<?php echo $username; ?>" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                    <span class="help-block"><?php echo $username_err; ?></span>
                 </div>
-                <input type="text" name="username" placeholder="Username" class="form-control" value="<?php echo $username; ?>">
-                </div>
-                <span class="help-block"><?php echo $username_err; ?></span>
             </div>    
             <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
-                <div class="input-group flex-nowrap">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="addon-wrapping"><i class="material-icons">lock</i></span>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="material-icons">lock_open</i></span>
+                    </div>
+                    <input type="password" name="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
+                    <span class="help-block"><?php echo $password_err; ?></span>
                 </div>
-                <input type="password" placeholder="Password" name="password" id="myInput" class="form-control">
-                </div>
-                <i class="material-icons">lock_open</i> <input type="checkbox" onclick="showpass()"> Show Password
-                <span class="help-block"> <?php echo $password_err; ?></span>
             </div>
             <div class="form-group">
-                <input id="asd" type="submit" onclick="loadicon()" class="btn btn-primary" value="Submit">
+                <input type="submit" style="border-radius: 50px; font-weight: bold;" class="btn btn-outline-primary" value="Login">
             </div>
+            <p>Don't have an account?<br><a href="register.php"><b>Sign up now </b><i style="vertical-align: middle;" class="material-icons">fast_forward</i></a>.</p>
         </form>
+    </div>    
 
-        <div id="qwe" style="display: none;" class="spinner-grow text-danger" role="status">
-            <span class="sr-only">Loading...</span>
-        </div>
-
-        <script>
-            function  loadicon() {
-                document.getElementById("qwe").style.display = 'block';
-                document.getElementById("asd").style.display = 'none';
-            }
-            function showpass() {
-                var x = document.getElementById("myInput");
-                if (x.type === "password") {
-                    x.type = "text";
-                } else {
-                    x.type = "password";
-                }
-            }
-        </script>
-       
-    </div>
-
-<?php require_once('footer.php'); ?>
+    <?php require_once('footer.php'); ?>

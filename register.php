@@ -1,6 +1,13 @@
 <?php
-// Include config file
-require_once "config.php";
+
+define('DB_SERVER', 'localhost');
+define('DB_USERNAME', 'root');
+define('DB_PASSWORD', '');
+define('DB_NAME', 'schooldb');
+ 
+$link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+ 
+if($link === false){ die("ERROR: Could not connect. " . mysqli_connect_error()); }
  
 // Define variables and initialize with empty values
 $username = $password = $confirm_password = "";
@@ -92,44 +99,45 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     mysqli_close($link);
 }
 ?>
- 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Sign Up</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
-    <style type="text/css">
-        body{ font: 14px sans-serif; }
-        .wrapper{ width: 350px; padding: 20px; }
-    </style>
-</head>
-<body>
-    <div class="wrapper">
-        <h2>Sign Up</h2>
-        <p>Please fill this form to create an account.</p>
+
+<?php require_once('header.php'); ?>
+
+    <br><h2 style="margin: 8px; padding: 8px; font-family: 'Work Sans', sans-serif;"> <img src="img/navbar/user.png" width="50" height="auto"> Sign Up</h2><br>
+    <div class="alert-primary" align="center" style="max-width: 400px; margin: 20px; padding: 20px; border-radius: 20px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);">
+        <p><b>Please fill this form to create an account.</b></p>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
-                <label>Username</label>
-                <input type="text" name="username" class="form-control" value="<?php echo $username; ?>">
-                <span class="help-block"><?php echo $username_err; ?></span>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="material-icons">person_outline</i></span>
+                    </div>
+                    <input type="text" name="username" class="form-control" value="<?php echo $username; ?>" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                    <span class="help-block"><?php echo $username_err; ?></span>
+                </div>
             </div>    
             <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
-                <label>Password</label>
-                <input type="password" name="password" class="form-control" value="<?php echo $password; ?>">
-                <span class="help-block"><?php echo $password_err; ?></span>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="material-icons">lock_open</i></span>
+                    </div>
+                    <input type="password" name="password" class="form-control" value="<?php echo $password; ?>" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
+                    <span class="help-block"><?php echo $password_err; ?></span>
+                </div>
             </div>
             <div class="form-group <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
-                <label>Confirm Password</label>
-                <input type="password" name="confirm_password" class="form-control" value="<?php echo $confirm_password; ?>">
-                <span class="help-block"><?php echo $confirm_password_err; ?></span>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="material-icons">lock</i></span>
+                    </div>
+                    <input type="password" name="confirm_password" class="form-control" value="<?php echo $confirm_password; ?>" placeholder="Confirm Password" aria-label="Confirm Password" aria-describedby="basic-addon1">
+                    <span class="help-block"><?php echo $confirm_password_err; ?></span>
+                </div>
             </div>
             <div class="form-group">
-                <input type="submit" class="btn btn-primary" value="Submit">
-                <input type="reset" class="btn btn-default" value="Reset">
+                <input type="submit" style="border-radius: 50px; font-weight: bold;" class="btn btn-outline-primary" value="Submit">
             </div>
-            <p>Already have an account? <a href="login.php">Login here</a>.</p>
+            <p>Already have an account?<br><a href="login.php"><b>Login here </b> <i style="vertical-align: middle;" class="material-icons">fast_forward</i></a>.</p>
         </form>
     </div>    
-</body>
-</html>
+
+    <?php require_once('footer.php'); ?>

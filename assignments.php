@@ -1,287 +1,118 @@
-<?php require_once('header.php') ?>
-</head>
-<body>
-<?php require_once('navbar.php') ?>
-<br>
-<div align="center">
-<b>Sort by: </b>
-<button type="button" onclick="sortActivity()" style="margin: 5px;" class="btn btn-outline-primary">Actvity Name</button>
-<button type="button" onclick="sortDate()" style="margin: 5px;" class="btn btn-outline-success">Date</button>
-<button type="button" onclick="sortCourse()" style="margin: 5px;" class="btn btn-outline-danger">Course</button>
-</div>
-<br>
-<table class="table" id="myTable">
+<?php
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "schooldb";
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    if ($conn->connect_error) { die("Connection failed: " . $conn->connect_error); }
+?>
 
-  <thead class="thead-light">
-    <tr>
-      <th scope="col"> Activity Name</th>
-      <th scope="col"> Date</th>
-      <th scope="col"> Course Code</th>
-      <th scope="col"> Course Name</th>
-    </tr>
-  </thead>
+<?php require_once('header.php'); ?>
+    <br><h2 style="margin: 8px; padding: 8px; font-family: 'Work Sans', sans-serif;"> <img src="img/navbar/assignment.png" width="50" height="auto"> Assignments</h2>
+    <div align="center">
+        <b>Sort by: </b>
+        <button type="button" onclick="sortSubject()" style="margin: 5px; border-radius: 50px;" class="btn alert-primary"><b>Subject</b></button>
+        <button type="button" onclick="sortDate()" style="margin: 5px; border-radius: 50px;" class="btn alert-danger"><b>Date</b></button>
+    </div><br>
+    <table style="margin: 5px; padding: 5px;" class="table" id="myTable">
+    <thead>
+        <tr>
+        <th scope="col">Subject</th>
+        <th scope="col">Activity</th>
+        <th scope="col">Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+            $sql = "SELECT subj, activity, duedate FROM myassign";
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()) {
+                    echo '<tr>
+                            <td>'.$row["subj"].'</td>
+                            <td>'.$row["activity"].'</td>
+                            <td>'.$row["duedate"].'</td>
+                        </tr>';
+                }
+            }
+            else { echo "<br><h2 align='center'>No assignment yet!</h2><br>"; }
+        ?>
+    </tbody>
+    </table><br>
+    <p align="center"> <i class="material-icons" style="vertical-align: top;">error_outline</i> Please contact admin to manage Assignments. </p>
 
-  <tbody>
-    <tr>
-      <th scope="row">WT1</th>
-      <td>21 Jan, 2019</td>
-      <td>EN106</td>
-      <td>Proffesional Communication</td>
-    </tr>
-    <tr>
-      <th scope="row">WT2</th>
-      <td>11 March, 2019</td>
-      <td>EN106</td>
-      <td>Proffesional Communication</td>
-    </tr>
-    <tr>
-      <th scope="row">GA1</th>
-      <td>24 Jan, 2019</td>
-      <td>EN106</td>
-      <td>Proffesional Communication</td>
-    </tr>
-    <tr>
-      <th scope="row">GA2</th>
-      <td>14 March, 2019</td>
-      <td>EN106</td>
-      <td>Proffesional Communication</td>
-    </tr>
-  
-    <tr>
-      <th scope="row">WT1</th>
-      <td>28 Jan, 2019</td>
-      <td>PY102</td>
-      <td>Eng. Physics</td>
-    </tr>
-    <tr>
-      <th scope="row">WT2</th>
-      <td>18 March, 2019</td>
-      <td>PY102</td>
-      <td>Eng. Physics</td>
-    </tr>
-    <tr>
-      <th scope="row">GA1</th>
-      <td>31 Jan, 2019</td>
-      <td>PY102</td>
-      <td>Eng. Physics</td>
-    </tr>
-    <tr>
-      <th scope="row">GA2</th>
-      <td>21 March, 2019</td>
-      <td>PY102</td>
-      <td>Eng. Physics</td>
-    </tr>
-  
-    <tr>
-      <th scope="row">WT1</th>
-      <td>4 Feb, 2019</td>
-      <td>MA 102</td>
-      <td>Mathematics - II</td>
-    </tr>
-    <tr>
-      <th scope="row">WT2</th>
-      <td>25 March, 2019</td>
-      <td>MA 102</td>
-      <td>Mathematics - II</td>
-    </tr>
-    <tr>
-      <th scope="row">GA1</th>
-      <td>7 Feb, 2019</td>
-      <td>MA 102</td>
-      <td>Mathematics - II</td>
-    </tr>
-    <tr>
-      <th scope="row">GA2</th>
-      <td>28 March, 2019</td>
-      <td>MA 102</td>
-      <td>Mathematics - II</td>
-    </tr>
-  
-    <tr>
-      <th scope="row">WT1</th>
-      <td>11 Feb, 2019</td>
-      <td>CP 104</td>
-      <td>CP / JAVA</td>
-    </tr>
-    <tr>
-      <th scope="row">WT2</th>
-      <td>1 April, 2019</td>
-      <td>CP 104</td>
-      <td>CP / JAVA</td>
-    </tr>
-    <tr>
-      <th scope="row">GA1</th>
-      <td>14 Feb, 2019</td>
-      <td>CP 104</td>
-      <td>CP / JAVA</td>
-    </tr>
-    <tr>
-      <th scope="row">GA2</th>
-      <td>4 April, 2019</td>
-      <td>CP 104</td>
-      <td>CP / JAVA</td>
-    </tr>
-  
-    <tr>
-      <th scope="row">WT1</th>
-      <td>18 Feb, 2019</td>
-      <td>ME 102</td>
-      <td>Eng. Mechanics</td>
-    </tr>
-    <tr>
-      <th scope="row">WT2</th>
-      <td>8 April, 2019</td>
-      <td>ME 102</td>
-      <td>Eng. Mechanics</td>
-    </tr>
-    <tr>
-      <th scope="row">GA1</th>
-      <td>21 Feb, 2019</td>
-      <td>ME 102</td>
-      <td>Eng. Mechanics</td>
-    </tr>
-    <tr>
-      <th scope="row">GA2</th>
-      <td>11 April, 2019</td>
-      <td>ME 102</td>
-      <td>Eng. Mechanics</td>
-    </tr>
-  
-    <tr>
-      <th scope="row">WT1</th>
-      <td>25 Feb, 2019</td>
-      <td>EC 102</td>
-      <td>MATLAB</td>
-    </tr>
-    <tr>
-      <th scope="row">WT2</th>
-      <td>15 April, 2019</td>
-      <td>EC 102</td>
-      <td>MATLAB</td>
-    </tr>
-    <tr>
-      <th scope="row">GA1</th>
-      <td>28 Feb, 2019</td>
-      <td>EC 102</td>
-      <td>MATLAB</td>
-    </tr>
-    <tr>
-      <th scope="row">GA2</th>
-      <td>20 April, 2019</td>
-      <td>EC 102</td>
-      <td>MATLAB</td>
-    </tr>
-  </tbody>
-  
-</table>
 
 <script>
 
-function sortActivity() {
-  var table, rows, switching, i, x, y, shouldSwitch;
-  table = document.getElementById("myTable");
-  switching = true;
-  /*Make a loop that will continue until
-  no switching has been done:*/
-  while (switching) {
-    //start by saying: no switching is done:
-    switching = false;
-    rows = table.rows;
-    /*Loop through all table rows (except the
-    first, which contains table headers):*/
-    for (i = 1; i < (rows.length - 1); i++) {
-      //start by saying there should be no switching:
-      shouldSwitch = false;
-      /*Get the two elements you want to compare,
-      one from current row and one from the next:*/
-      x = rows[i].getElementsByTagName("TH")[0];    
-      y = rows[i + 1].getElementsByTagName("TH")[0];
-      //check if the two rows should switch place:
-      if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-        //if so, mark as a switch and break the loop:
-        shouldSwitch = true;
-        break;
-      }
+    function sortSubject() {
+        var table, rows, switching, i, x, y, shouldSwitch;
+        table = document.getElementById("myTable");
+        switching = true;
+        /*Make a loop that will continue until
+        no switching has been done:*/
+        while (switching) {
+            //start by saying: no switching is done:
+            switching = false;
+            rows = table.rows;
+            /*Loop through all table rows (except the
+            first, which contains table headers):*/
+            for (i = 1; i < (rows.length - 1); i++) {
+            //start by saying there should be no switching:
+            shouldSwitch = false;
+            /*Get the two elements you want to compare,
+            one from current row and one from the next:*/
+            x = rows[i].getElementsByTagName("TD")[0];    
+            y = rows[i + 1].getElementsByTagName("TD")[0];
+            //check if the two rows should switch place:
+            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                //if so, mark as a switch and break the loop:
+                shouldSwitch = true;
+                break;
+            }
+            }
+            if (shouldSwitch) {
+            /*If a switch has been marked, make the switch
+            and mark that a switch has been done:*/
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+            }
+        }
     }
-    if (shouldSwitch) {
-      /*If a switch has been marked, make the switch
-      and mark that a switch has been done:*/
-      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-      switching = true;
-    }
-  }
-}
 
-function sortDate() {
-  var table, rows, switching, i, x, y, shouldSwitch;
-  table = document.getElementById("myTable");
-  switching = true;
-  /*Make a loop that will continue until
-  no switching has been done:*/
-  while (switching) {
-    //start by saying: no switching is done:
-    switching = false;
-    rows = table.rows;
-    /*Loop through all table rows (except the
-    first, which contains table headers):*/
-    for (i = 1; i < (rows.length - 1); i++) {
-      //start by saying there should be no switching:
-      shouldSwitch = false;
-      /*Get the two elements you want to compare,
-      one from current row and one from the next:*/
-      x = rows[i].getElementsByTagName("TD")[0];    
-      y = rows[i + 1].getElementsByTagName("TD")[0];
-      //check if the two rows should switch place:
-      if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-        //if so, mark as a switch and break the loop:
-        shouldSwitch = true;
-        break;
-      }
+    function sortDate() {
+        var table, rows, switching, i, x, y, shouldSwitch;
+        table = document.getElementById("myTable");
+        switching = true;
+        /*Make a loop that will continue until
+        no switching has been done:*/
+        while (switching) {
+            //start by saying: no switching is done:
+            switching = false;
+            rows = table.rows;
+            /*Loop through all table rows (except the
+            first, which contains table headers):*/
+            for (i = 1; i < (rows.length - 1); i++) {
+            //start by saying there should be no switching:
+            shouldSwitch = false;
+            /*Get the two elements you want to compare,
+            one from current row and one from the next:*/
+            x = rows[i].getElementsByTagName("TD")[2];    
+            y = rows[i + 1].getElementsByTagName("TD")[2];
+            //check if the two rows should switch place:
+            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                //if so, mark as a switch and break the loop:
+                shouldSwitch = true;
+                break;
+            }
+            }
+            if (shouldSwitch) {
+            /*If a switch has been marked, make the switch
+            and mark that a switch has been done:*/
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+            }
+        }
     }
-    if (shouldSwitch) {
-      /*If a switch has been marked, make the switch
-      and mark that a switch has been done:*/
-      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-      switching = true;
-    }
-  }
-}
-
-function sortCourse() {
-  var table, rows, switching, i, x, y, shouldSwitch;
-  table = document.getElementById("myTable");
-  switching = true;
-  /*Make a loop that will continue until
-  no switching has been done:*/
-  while (switching) {
-    //start by saying: no switching is done:
-    switching = false;
-    rows = table.rows;
-    /*Loop through all table rows (except the
-    first, which contains table headers):*/
-    for (i = 1; i < (rows.length - 1); i++) {
-      //start by saying there should be no switching:
-      shouldSwitch = false;
-      /*Get the two elements you want to compare,
-      one from current row and one from the next:*/
-      x = rows[i].getElementsByTagName("TD")[2];    
-      y = rows[i + 1].getElementsByTagName("TD")[2];
-      //check if the two rows should switch place:
-      if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-        //if so, mark as a switch and break the loop:
-        shouldSwitch = true;
-        break;
-      }
-    }
-    if (shouldSwitch) {
-      /*If a switch has been marked, make the switch
-      and mark that a switch has been done:*/
-      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-      switching = true;
-    }
-  }
-}
 
 </script>
-
-<?php require_once('footer.php') ?>
+<?php require_once('footer.php'); ?>

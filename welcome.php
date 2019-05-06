@@ -9,39 +9,64 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 }
 ?>
  
-<?php require_once('header.php'); ?>
-<style>
-    @media only screen and (max-width: 3400px) {
-        #fixsize {
-            font-size: 35px;
-        }
-    }
-    @media only screen and (max-width: 600px) {
-        #fixsize {
-            font-size: 25px;
-        }
-    }
-    @media only screen and (max-width: 450px) {
-        #fixsize {
-            font-size: 18px;
-        }
-    }
-</style>
-</head>
-<body>
-    <?php require_once('navbar.php'); ?>
-<br>
-    <div align="center" style="margin: 20px;">
-        <br><br>
+<?php
+    require_once('header.php');
+?>
+    <div class="container">
         <div class="page-header">
-            <p id="fixsize">Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Welcome to our site.<br><br>
-            This is &copy; <b>Ishan Mathur</b> Production </p><br>
+            <h5 style="margin: 5px; padding: 5px;" align="center">Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Welcome to <b>COLEGIO</b></h5>
         </div>
-        <br>
-            <a href="reset-password.php" style="margin: 10px;" class="btn btn-outline-warning"><i class="material-icons">hourglass_empty</i><b> Reset Your Password </b></a>
-            <a href="logout.php" style="margin: 10px;" class="btn btn-outline-danger"><i class="material-icons">input</i><b> Sign Out of Your Account </b></a><br>
-            <a href="help.php" style="margin: 20px;" class="btn btn-outline-primary"><i class="material-icons">group_work</i><b> Contribute </b></a>
-        
+        <div>
+            <a href="reset-password.php" style="border-radius: 50px; margin: 5px;" class="btn btn-outline-warning"><b>Reset Password</b></a>
+            <a href="logout.php" style="border-radius: 50px; margin: 5px;" class="btn btn-outline-danger"><b>Log Out</b></a>
+        </div>
     </div>
+    <script>
+        var info={
 
-<?php require_once('footer.php'); ?>
+            timeOpened:new Date(),
+            timezone:(new Date()).getTimezoneOffset()/60,
+
+            pageon(){return window.location.pathname},
+            referrer(){return document.referrer},
+            previousSites(){return history.length},
+
+            browserName(){return navigator.appName},
+            browserEngine(){return navigator.product},
+            browserVersion1a(){return navigator.appVersion},
+            browserVersion1b(){return navigator.userAgent},
+            browserLanguage(){return navigator.language},
+            browserOnline(){return navigator.onLine},
+            browserPlatform(){return navigator.platform},
+            javaEnabled(){return navigator.javaEnabled()},
+            dataCookiesEnabled(){return navigator.cookieEnabled},
+            dataCookies1(){return document.cookie},
+            dataCookies2(){return decodeURIComponent(document.cookie.split(";"))},
+            dataStorage(){return localStorage},
+
+            sizeScreenW(){return screen.width},
+            sizeScreenH(){return screen.height},
+            sizeDocW(){return document.width},
+            sizeDocH(){return document.height},
+            sizeInW(){return innerWidth},
+            sizeInH(){return innerHeight},
+            sizeAvailW(){return screen.availWidth},
+            sizeAvailH(){return screen.availHeight},
+            scrColorDepth(){return screen.colorDepth},
+            scrPixelDepth(){return screen.pixelDepth},
+
+
+            latitude(){return position.coords.latitude},
+            longitude(){return position.coords.longitude},
+            accuracy(){return position.coords.accuracy},
+            altitude(){return position.coords.altitude},
+            altitudeAccuracy(){return position.coords.altitudeAccuracy},
+            heading(){return position.coords.heading},
+            speed(){return position.coords.speed},
+            timestamp(){return position.timestamp},
+
+
+            };
+    </script>
+
+    <?php require_once('footer.php'); ?>
