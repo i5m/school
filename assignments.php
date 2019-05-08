@@ -1,14 +1,5 @@
-<?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "schooldb";
-    $conn = new mysqli($servername, $username, $password, $dbname);
-    if ($conn->connect_error) { die("Connection failed: " . $conn->connect_error); }
-?>
-
 <?php require_once('header.php'); ?>
-    <br><h2 style="margin: 8px; padding: 8px; font-family: 'Work Sans', sans-serif;"> <img src="img/navbar/assignment.png" width="50" height="auto"> Assignments</h2>
+    <br><h2 style="margin: 8px; padding: 8px; font-family: 'Work Sans', sans-serif;"> <img src="img/navbar/assignment-min.png" width="50" height="auto"> Assignments</h2>
     <div align="center">
         <b>Sort by: </b>
         <button type="button" onclick="sortSubject()" style="margin: 5px; border-radius: 50px;" class="btn alert-primary"><b>Subject</b></button>

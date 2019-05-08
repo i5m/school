@@ -24,8 +24,6 @@
         $data = $_POST['deleteassignment'];
         $selectrow = str_replace("Delete", "", $data);
         $dataquery = "DELETE FROM myassign WHERE id=".$selectrow."";
-        $decnum = "SELECT MAX('id') FROM 'myassign'";
-        $autodec = "ALTER TABLE 'myassign' AUTO_INCREMENT = ".$decnum."";
         if ($conn->query($dataquery) === TRUE) {
             echo "Record removed.";
         }
@@ -51,7 +49,7 @@
     <body>
         <div class="container" align="center"><br>
             <h1 style="margin: 8px; padding: 8px;">Assignment Page</h1><br><br>
-            <div class="alert-warning" style="margin: 5px; padding: 10px; border-radius: 20px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);">
+            <div class="alert-success" style="margin: 5px; padding: 10px; border-radius: 20px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);">
                 <h3>Add a Assignment</h3><br>
                 <form action="" method="post">
                     <div class="row">
@@ -79,11 +77,11 @@
                             <input type="date" name="duedate" min="2018-01-01" max="2025-12-31">
                         </div>
                     </div><br>
-                    <input type="submit" name="AddAssignmentBtn" class="btn btn-warning" value="Add Assignment">
+                    <input type="submit" name="AddAssignmentBtn" class="btn btn-success" value="Add Assignment">
                 </form>
             </div><br><br>
 
-            <div class="alert-success" style="margin: 5px; padding: 10px; border-radius: 20px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);">
+            <div class="alert-danger" style="margin: 5px; padding: 10px; border-radius: 20px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);">
                 <h3>Manage Assignments</h3>
                 <table class="table" id="myTable">
                     <thead>
@@ -106,7 +104,7 @@
                                             <td>'.$row["subj"].'</td>
                                             <td>'.$row["activity"].'</td>
                                             <td>'.$row["duedate"].'</td>
-                                            <td>'.'<form action="" method="post"> <input type="submit" class="btn btn-success" value="Delete'.$row["id"].'" name="deleteassignment"> </form>'.'</td>
+                                            <td>'.'<form action="" method="post"> <input type="submit" class="btn btn-outline-danger" value="Delete'.$row["id"].'" name="deleteassignment"> </form>'.'</td>
                                         </tr>';
                                 }
                             }

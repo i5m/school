@@ -17,7 +17,6 @@ if ($conn->connect_error) { die("Connection failed: " . $conn->connect_error); }
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Work+Sans:800" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-        <link rel="stylesheet" href="css/main.css">
     </head>
     <body>
-        <?php require_once('navbar.php'); ?>
+        <?php require_once('navbar/navbar.php'); ?>

@@ -12,7 +12,14 @@ CREATE TABLE myassign (
 )
 CREATE TABLE users (
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    fullname VARCHAR(50) NOT NULL,
     username VARCHAR(50) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
+    imgloc VARCHAR(100),
+    bday VARCHAR(15),
+    phone VARCHAR(15),
+    bio VARCHAR(100),
+    branch VARCHAR(30),
+    city VARCHAR(30),
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );

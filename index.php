@@ -1,6 +1,6 @@
 <?php require_once('header.php'); ?>
 <div id="container">
-    <br><h2 style="margin: 8px; padding: 8px; font-family: 'Work Sans', sans-serif;"> <img src="img/navbar/home.png" width="50" height="auto"> Subjects...</h1><br>
+    <br><h2 style="margin: 8px; padding: 8px; font-family: 'Work Sans', sans-serif;"> <img src="img/navbar/home-min.png" width="50" height="auto"> Subjects...</h1><br>
     <div id="subjectlist" align="center">
         <?php
             $colorpallete = array('primary','warning','danger','success');
